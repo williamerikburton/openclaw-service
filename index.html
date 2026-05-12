@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your OpenClaw Setup - Inbox Optin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #0f172a;
+            --accent: #dc2626;
+            --accent-hover: #b91c1c;
+            --success: #10b981;
+            --gold: #f59e0b;
+            --text: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --bg: #f8fafc;
+            --bg-white: #ffffff;
+            --border: #e2e8f0;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+        }
+        
+        /* HEADER */
+        .header {
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 24px;
+            text-align: center;
+        }
+        
+        .header-logo {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        
+        .header-tagline {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        
+        /* HERO */
+        .hero {
+            background: var(--primary);
+            color: #fff;
+            padding: 60px 24px;
+            text-align: center;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(245, 158, 11, 0.2);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+        
+        .hero h1 {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* MAIN */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+        
+        /* SERVICE PACKAGES */
+        .packages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+        
+        .package {
+            background: var(--bg-white);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            position: relative;
+            transition: all 0.2s;
+        }
+        
+        .package:hover {
+            border-color: var(--border);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+        
+        .package.featured {
+            border-color: var(--gold);
+            box-shadow: 0 10px 40px rgba(245, 158, 11, 0.15);
+        }
+        
+        .package-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gold);
+            color: var(--primary);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+        
+        .package-name {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        
+        .package-price {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--text);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        
+        .package-price span {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+        
+        .package-description {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .package-features {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+        
+        .package-features li {
+            padding: 10px 0;
+            font-size: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .package-features li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 14px 24px;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+        
+        .btn-primary:hover {
+            background: var(--accent-hover);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            border: 2px solid var(--border);
+        }
+        
+        .btn-outline:hover {
+            border-color: var(--text);
+            background: var(--text);
+            color: #fff;
+        }
+        
+        /* BOOKING FORM */
+        .booking-section {
+            background: var(--bg-white);
+            border-radius: 16px;
+            padding: 48px;
+            border: 1px solid var(--border);
+        }
+        
+        .booking-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .booking-header h2 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        
+        .booking-header p {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        @media (max-width: 600px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .form-group {
+            margin-bottom: 8px;
+        }
+        
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 15px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            transition: border-color 0.2s;
+            background: var(--bg-white);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+        
+        .time-slot {
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+        
+        .time-slot:hover {
+            border-color: var(--gold);
+        }
+        
+        .time-slot.selected {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* GUARANTEE */
+        .guarantee-bar {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border: 1px solid #a7f3d0;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .guarantee-icon {
+            font-size: 40px;
+        }
+        
+        .guarantee-content h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #065f46;
+            margin-bottom: 4px;
+        }
+        
+        .guarantee-content p {
+            font-size: 14px;
+            color: #047857;
+        }
+        
+        /* FAQ */
+        .faq-section {
+            margin-top: 64px;
+        }
+        
+        .faq-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .faq-header h2 {
+            font-size: 24px;
+            font-weight: 800;
+        }
+        
+        .faq-item {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+        
+        .faq-item h4 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+        
+        .faq-item p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        /* FOOTER */
+        .footer {
+            background: var(--primary);
+            color: rgba(255, 255, 255, 0.6);
+            padding: 40px 24px;
+            text-align: center;
+            margin-top: 64px;
+        }
+        
+        .footer p {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-logo">Inbox Optin</div>
+        <div class="header-tagline">OpenClaw Setup Services</div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-badge">⚡ Limited Availability</div>
+        <h1>Book Your OpenClaw Setup Service</h1>
+        <p class="hero-subtitle">Choose your package and schedule your onboarding call. We'll have you launching offers in 37 minutes within one week.</p>
+    </section>
+
+    <!-- MAIN -->
+    <div class="container">
+        <!-- PACKAGES -->
+        <div class="packages">
+            <div class="package">
+                <div class="package-name">Self-Setup</div>
+                <div class="package-price">$199<span>/month</span></div>
+                <p class="package-description">For hands-on entrepreneurs who want to operate their own OpenClaw system.</p>
+                <ul class="package-features">
+                    <li>Complete OpenClaw installation</li>
+                    <li>Your own AI agent instance</li>
+                    <li>5 custom skills included</li>
+                    <li>Full tool integrations</li>
+                    <li>2-hour training session</li>
+                    <li>Monthly strategy call</li>
+                    <li>Email support</li>
+                </ul>
+                <button class="btn btn-outline">Select Self-Setup</button>
+            </div>
+
+            <div class="package featured">
+                <div class="package-badge">Recommended</div>
+                <div class="package-name">Platinum Service</div>
+                <div class="package-price">$2,499</div>
+                <p class="package-description">Done-for-you service. We become your AI operations department.</p>
+                <ul class="package-features">
+                    <li>Everything in Self-Setup</li>
+                    <li>Fully managed by our team</li>
+                    <li>Unlimited skill builds</li>
+                    <li>Weekly offer launches</li>
+                    <li>Same-day priority support</li>
+                    <li>Quarterly strategy sessions</li>
+                    <li>Direct Slack access</li>
+                    <li>Custom AI training on your voice</li>
+                </ul>
+                <button class="btn btn-primary">Select Platinum</button>
+            </div>
+        </div>
+
+        <!-- BOOKING FORM -->
+        <div class="booking-section">
+            <div class="booking-header">
+                <h2>Schedule Your Onboarding</h2>
+                <p>Fill out the form below and select your preferred time</p>
+            </div>
+
+            <form>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="firstname">First Name</label>
+                        <input type="text" id="firstname" placeholder="John">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Last Name</label>
+                        <input type="text" id="lastname" placeholder="Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="john@company.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="(555) 123-4567">
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Company Name</label>
+                        <input type="text" id="company" placeholder="Your Company">
+                    </div>
+                    <div class="form-group">
+                        <label for="website">Website (optional)</label>
+                        <input type="url" id="website" placeholder="https://">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="goals">What are your main goals? (Select all that apply)</label>
+                        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px;">
+                            <label style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; background: var(--bg); border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer;">
+                                <input type="checkbox"> Launch offers faster
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; background: var(--bg); border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer;">
+                                <input type="checkbox"> Automate marketing
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; background: var(--bg); border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer;">
+                                <input type="checkbox"> Scale my agency
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; background: var(--bg); border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer;">
+                                <input type="checkbox"> Build AI systems
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Preferred Call Time</label>
+                        <div class="time-slots">
+                            <div class="time-slot">Mon 10am</div>
+                            <div class="time-slot">Mon 2pm</div>
+                            <div class="time-slot">Tue 10am</div>
+                            <div class="time-slot selected">Tue 2pm</div>
+                            <div class="time-slot">Wed 10am</div>
+                            <div class="time-slot">Wed 2pm</div>
+                            <div class="time-slot">Thu 10am</div>
+                            <div class="time-slot">Thu 2pm</div>
+                        </div>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="notes">Anything else we should know?</label>
+                        <textarea id="notes" placeholder="Tell us about your current setup, challenges, or specific needs..."></textarea>
+                    </div>
+                </div>
+
+                <div class="guarantee-bar">
+                    <div class="guarantee-icon">🛡️</div>
+                    <div class="guarantee-content">
+                        <h3>7-Day Money-Back Guarantee</h3>
+                        <p>If you're not satisfied after your first week, we'll refund 100% of your investment. No questions asked.</p>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="font-size: 17px; padding: 18px;">Book My Onboarding Call →</button>
+            </form>
+        </div>
+
+        <!-- FAQ -->
+        <div class="faq-section">
+            <div class="faq-header">
+                <h2>Common Questions</h2>
+            </div>
+            <div class="faq-item">
+                <h4>What happens after I book?</h4>
+                <p>You'll receive a confirmation email with your call details. After the call, we begin your setup immediately and have you operational within 48 hours.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Do I need technical skills?</h4>
+                <p>No. If you choose Platinum, we handle everything. For Self-Setup, we provide a 2-hour training session that gets you fully operational.</p>
+            </div>
+            <div class="faq-item">
+                <h4>What tools do I need?</h4>
+                <p>We integrate with your existing tools—Stripe, your email platform, CRM, etc. If you don't have these set up yet, we help you get them configured.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>© 2026 Inbox Optin. All rights reserved. Questions? Email erikburton@agentmail.to</p>
+    </footer>
+</body>
+</html>
